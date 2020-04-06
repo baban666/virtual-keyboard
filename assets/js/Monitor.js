@@ -7,13 +7,11 @@ export class Monitor {
     }
 
     updateScreen = (text) => {
-        let screen = document.getElementById('screen')
-        let kp = document.getElementById('kp')
+        let screen = document.getElementById('screen');
+        let kp = document.getElementById('kp');
         let template = `<textarea id="kp">${text.join('')}</textarea>`;
-        screen.innerHTML = template
+        screen.innerHTML = template;
     };
-
-
 
     // Button generator
     renderMonitor(rootTagId, text = this.defaultText) {
@@ -23,8 +21,7 @@ export class Monitor {
             <textarea id="kp" placeholder="Change language ShiftRight + ShiftLeft...">${text.join()}</textarea>
         </div>
         <div class="monitorstand"></div>`;
-
-        let root = getRoot.getRoot(rootTagId)
+        let root = getRoot.getRoot(rootTagId);
         let monitor = document.createElement('div');
         monitor.innerHTML = template;
         root.before(monitor);
