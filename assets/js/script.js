@@ -251,6 +251,7 @@ document.addEventListener('keydown', function(e) {
             }
     };
 
+
     elem.classList.add('activate');
     elem.classList.add('color');
 
@@ -261,8 +262,17 @@ document.addEventListener('keyup', function(e) {
     let keyCode = e.which || e.keyCode;
     let elem = document.getElementById(keyCode.toString());
 
-    elem.classList.remove('activate');
-    elem.classList.remove('color');
+
+
+    if(elem.classList.contains('activate')){
+        elem.classList.remove('activate');
+    }
+
+    if(elem.classList.contains('color')){
+        elem.classList.remove('color');
+    }
+
+
 
 });
 
