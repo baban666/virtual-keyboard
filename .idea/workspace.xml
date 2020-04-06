@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dbf1773-a469-435c-be0e-4cb1f369d049" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/Monitor.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/Monitor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/key-codes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/key-codes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/script-old.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +89,8 @@
       <workItem from="1585922138969" duration="24067000" />
       <workItem from="1585992652737" duration="42140000" />
       <workItem from="1586125731642" duration="5865000" />
-      <workItem from="1586131844803" duration="10787000" />
+      <workItem from="1586131844803" duration="11149000" />
+      <workItem from="1586168108577" duration="8861000" />
     </task>
     <servers />
   </component>
@@ -99,7 +102,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

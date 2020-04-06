@@ -100,15 +100,16 @@ runOnKeys(
         keyboard.renderButtonsToDom('root', localStorage.getItem('language') );
         screen.updateScreen(text);
         clickHandler();
+
     },
-    "ShiftLeft", "AltLeft"
+    'ShiftRight', 'ShiftLeft'
 );
 
 runOnKeys(
     () => {
         setCapsLock();
     },
-    "CapsLock"
+    'CapsLock'
 );
 
 runOnKeys(
@@ -118,13 +119,38 @@ runOnKeys(
         elem.classList.remove('activate');
         elem.classList.remove('color');
     },
-    "Tab"
+    'Tab'
+);
+
+runOnKeys(
+    () => {
+        let elemShift = document.querySelector('.shift-right');
+
+        elemShift.classList.add('activate', 'color');
+
+    },
+    'ShiftRight'
+);
+runOnKeys(
+    () => {
+        let elemAlt = document.querySelector('.alt-right');
+
+        elemAlt.classList.add('activate', 'color');
+    },
+     'AltRight'
+);
+runOnKeys(
+    () => {
+        let elemCtrl = document.querySelector('.ctrl-right');
+
+        elemCtrl.classList.add('activate', 'color');
+    },
+    'ControlRight'
 );
 
 
 document.addEventListener('keydown', function(e) {
 
-    monitor.focus();
 
     let keyCode = e.which || e.keyCode;
     let elem = document.getElementById(keyCode.toString());
@@ -132,6 +158,13 @@ document.addEventListener('keydown', function(e) {
     let char = getChar(data, keyCode);
     let isDigit = (keyCode >= 48 && keyCode <= 57 ) ? true : false;
     let isEng = (localStorage.getItem('language') == 'en') ? true : false;
+
+    if(e.code == 'ControlRight' || e.code == 'AltRight'|| e.code == 'ShiftRight' ){
+
+    }else {
+        elem.classList.add('activate');
+        elem.classList.add('color');
+    }
 
     switch (keyCode) {
         case 8:
@@ -149,19 +182,24 @@ document.addEventListener('keydown', function(e) {
             break;
         case 9:
             e.preventDefault();
-            monitor.focus();
             (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, `\t`) : text.splice(text.length, 0,  `\t`);
             screen.updateScreen(text);
             break;
         case 32:
-            e.preventDefault();
-            monitor.focus();
-            (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, ` `) : text.splice(text.length, 0,  ` `);
-            screen.updateScreen(text);
+            const inputSpace = document.getElementById('kp');
+            inputSpace.oninput = function() {
+                text = inputSpace.value.split('');
+            };
             break;
         case 13:
             break;
         case 20:
+            break;
+        case 46:
+            const inputDel = document.getElementById('kp');
+            inputDel.oninput = function() {
+                text = inputDel.value.split('');
+            };
             break;
         case 37:
         case 38:
@@ -172,10 +210,8 @@ document.addEventListener('keydown', function(e) {
         case 189:
         case 191:
         case 220:
-            monitor.focus();
             if (getCharPosition() != 0 ){
                 if(isEng){
-                    monitor.focus();
                     (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
                     screen.updateScreen(text);
                 }else {
@@ -185,11 +221,9 @@ document.addEventListener('keydown', function(e) {
                 }
             }else {
                 if(isEng){
-                    monitor.focus();
                     (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
                     screen.updateScreen(text);
                 }else {
-                    monitor.focus();
                     (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()[0]) : text.splice(text.length, 0, elem.innerText.toLowerCase()[2]);
                     screen.updateScreen(text);
                 }
@@ -206,11 +240,9 @@ document.addEventListener('keydown', function(e) {
             monitor.focus();
             if (getCharPosition() != 0 ){
                 if(isEng){
-                    monitor.focus();
                     (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
                     screen.updateScreen(text);
                 }else {
-                    monitor.focus();
                     text.splice(getCharPosition(), 0, elem.innerText);
                     screen.updateScreen(text);
                 }
@@ -220,7 +252,6 @@ document.addEventListener('keydown', function(e) {
                     (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
                     screen.updateScreen(text);
                 }else {
-                    monitor.focus();
                     (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()) : text.splice(text.length, 0, elem.innerText.toLowerCase());
                     screen.updateScreen(text);
                 }
@@ -234,17 +265,14 @@ document.addEventListener('keydown', function(e) {
                     (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
                     screen.updateScreen(text);
                 }else {
-                    monitor.focus();
                     text.splice(getCharPosition(), 0, elem.innerText);
                     screen.updateScreen(text);
                 }
             }else {
                 if(isDigit){
-                    monitor.focus();
                     (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
                     screen.updateScreen(text);
                 }else {
-                    monitor.focus();
                     (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()) : text.splice(text.length, 0, elem.innerText.toLowerCase());
                     screen.updateScreen(text);
                 }
@@ -252,23 +280,29 @@ document.addEventListener('keydown', function(e) {
     };
 
 
-    elem.classList.add('activate');
-    elem.classList.add('color');
+
 
 });
 
 document.addEventListener('keyup', function(e) {
-    monitor.focus();
+
     let keyCode = e.which || e.keyCode;
     let elem = document.getElementById(keyCode.toString());
 
+    let elemShift = document.querySelector('.shift-right');
+    let elemAlt = document.querySelector('.alt-right');
+    let elemCtrl = document.querySelector('.ctrl-right');
+
+    elemShift.classList.remove('activate', 'color');
+    elemCtrl.classList.remove('activate', 'color');
+    elemAlt.classList.remove('activate', 'color');
 
 
-    if(elem.classList.contains('activate')){
+    if(elem && elem.classList.contains('activate')){
         elem.classList.remove('activate');
     }
 
-    if(elem.classList.contains('color')){
+    if(elem && elem.classList.contains('color')){
         elem.classList.remove('color');
     }
 
@@ -310,17 +344,28 @@ const clickHandler = () => {
                     break;
                 case 17:
                     break;
+                case 46:
+                    if (getCharPosition() != 0 ){
+                        text.splice(getCharPosition(), 1);
+                        screen.updateScreen(text);
+                    }else {
+                        text.pop();
+                        screen.updateScreen(text);
+                    }
+                    const inputDel = document.getElementById('kp');
+                    inputDel.oninput = function() {
+                        text = inputDel.value.split('');
+                    };
+                    break;
                 case 18:
                     e.preventDefault();
                     break;
                 case 9:
                     e.preventDefault();
-                    monitor.focus();
                     (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, `\t`) : text.splice(text.length, 0,  `\t`);
                     screen.updateScreen(text);
                     break;
                 case 13:
-                    monitor.focus();
                     (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, `\n`) : text.splice(text.length, 0,  `\n`);
                     screen.updateScreen(text);
                     break;
@@ -329,38 +374,41 @@ const clickHandler = () => {
                     e.preventDefault();
                     break;
                 case 32:
-                    monitor.focus();
-                    (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, ` `) : text.splice(text.length, 0,  ` `);
-                    screen.updateScreen(text);
+
+                    if (getCharPosition() != 0 ){
+                        text.splice(getCharPosition(), 0, ` `);
+                        screen.updateScreen(text);
+                    }else {
+                        text.splice(text.length, 0,  ` `)
+                        screen.updateScreen(text);
+                    }
                     break;
                 case 37:
                 case 38:
                 case 39:
                 case 40:
                 case 91:
+                case 15:
                     break;
                 case 187:
                 case 189:
                 case 191:
                 case 220:
-                    monitor.focus();
                     if (getCharPosition() != 0 ){
                         if(isEng){
-                            monitor.focus();
                             (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
                             screen.updateScreen(text);
                         }else {
-                            monitor.focus();
                             text.splice(getCharPosition(), 0, elem.innerText);
                             screen.updateScreen(text);
                         }
                     }else {
                         if(isEng){
-                            monitor.focus();
+
                             (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
                             screen.updateScreen(text);
                         }else {
-                            monitor.focus();
+
                             (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()[0]) : text.splice(text.length, 0, elem.innerText.toLowerCase()[2]);
                             screen.updateScreen(text);
                         }
@@ -374,24 +422,24 @@ const clickHandler = () => {
                 case 219:
                 case 221:
                 case 222:
-                    monitor.focus();
+
                     if (getCharPosition() != 0 ){
                         if(isEng){
-                            monitor.focus();
+
                             (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
                             screen.updateScreen(text);
                         }else {
-                            monitor.focus();
+
                             text.splice(getCharPosition(), 0, elem.innerText);
                             screen.updateScreen(text);
                         }
                     }else {
                         if(isEng){
-                            monitor.focus();
+
                             (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
                             screen.updateScreen(text);
                         }else {
-                            monitor.focus();
+
                             (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()) : text.splice(text.length, 0, elem.innerText.toLowerCase());
                             screen.updateScreen(text);
                         }
@@ -399,24 +447,24 @@ const clickHandler = () => {
                     break;
 
                 default:
-                    monitor.focus();
+
                     if (getCharPosition() != 0 ){
                         if(isDigit){
-                            monitor.focus();
+
                             (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
                             screen.updateScreen(text);
                         }else {
-                            monitor.focus();
+
                             text.splice(getCharPosition(), 0, elem.innerText);
                             screen.updateScreen(text);
                         }
                     }else {
                         if(isDigit){
-                            monitor.focus();
+
                             (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
                             screen.updateScreen(text);
                         }else {
-                            monitor.focus();
+
                             (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()) : text.splice(text.length, 0, elem.innerText.toLowerCase());
                             screen.updateScreen(text);
                         }
@@ -428,6 +476,9 @@ const clickHandler = () => {
     });
 
 };
+
+
+
 
 
 clickHandler();

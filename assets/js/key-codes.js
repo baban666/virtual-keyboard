@@ -83,7 +83,7 @@ export  const data = [
         keyCod: 8,
         spanTag: '',
         className: 'col backspace',
-        value: 'Backs'
+        value: 'Back'
     },
     {
         keyCod: 9,
@@ -180,8 +180,14 @@ export  const data = [
     {
         keyCod: 220,
         spanTag: '|',
-        className: 'col slace',
+        className: 'col',
         value: `\\`
+    },
+    {
+        keyCod: 46,
+        spanTag: '',
+        className: 'col',
+        value: `del`
     },
     {
         keyCod: 20,
@@ -360,7 +366,7 @@ export  const data = [
         value: '▲'
     },
     {
-        keyCod: 16,
+        keyCod: 16-1,
         spanTag: '',
         className: 'col shift-right',
         value: 'Shift'
@@ -390,9 +396,9 @@ export  const data = [
         value: ' '
     },
     {
-        keyCod: 18,
+        keyCod: 18-1,
         spanTag: '',
-        className: 'col',
+        className: 'col alt-right',
         value: 'Alt'
     },
     {
@@ -414,9 +420,9 @@ export  const data = [
         value: '►'
     },
     {
-        keyCod: 17,
+        keyCod: 17-1,
         spanTag: '',
-        className: 'col ctrl',
+        className: 'col ctrl ctrl-right',
         value: 'Ctrl'
     },
 ];

@@ -20,7 +20,7 @@ export class Monitor {
         const getRoot = new Keyboard;
         let template = `
         <div id="screen" class="monitor">
-            <textarea id="kp" placeholder="Change language ShiftLeft + AltLeft...">${text.join()}</textarea>
+            <textarea id="kp" placeholder="Change language ShiftRight + ShiftLeft...">${text.join()}</textarea>
         </div>
         <div class="monitorstand"></div>`;
 
