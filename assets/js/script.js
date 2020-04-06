@@ -131,6 +131,7 @@ document.addEventListener('keydown', function(e) {
 
     let char = getChar(data, keyCode);
     let isDigit = (keyCode >= 48 && keyCode <= 57 ) ? true : false;
+    let isEng = (localStorage.getItem('language') == 'en') ? true : false;
 
     switch (keyCode) {
         case 8:
@@ -166,6 +167,64 @@ document.addEventListener('keydown', function(e) {
         case 38:
         case 39:
         case 40:
+            break;
+        case 187:
+        case 189:
+        case 191:
+        case 220:
+            monitor.focus();
+            if (getCharPosition() != 0 ){
+                if(isEng){
+                    monitor.focus();
+                    (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
+                    screen.updateScreen(text);
+                }else {
+                    monitor.focus();
+                    text.splice(getCharPosition(), 0, elem.innerText);
+                    screen.updateScreen(text);
+                }
+            }else {
+                if(isEng){
+                    monitor.focus();
+                    (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
+                    screen.updateScreen(text);
+                }else {
+                    monitor.focus();
+                    (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()[0]) : text.splice(text.length, 0, elem.innerText.toLowerCase()[2]);
+                    screen.updateScreen(text);
+                }
+            }
+
+            break;
+        case 186:
+        case 188:
+        case 190:
+        case 192:
+        case 219:
+        case 221:
+        case 222:
+            monitor.focus();
+            if (getCharPosition() != 0 ){
+                if(isEng){
+                    monitor.focus();
+                    (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
+                    screen.updateScreen(text);
+                }else {
+                    monitor.focus();
+                    text.splice(getCharPosition(), 0, elem.innerText);
+                    screen.updateScreen(text);
+                }
+            }else {
+                if(isEng){
+                    monitor.focus();
+                    (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
+                    screen.updateScreen(text);
+                }else {
+                    monitor.focus();
+                    (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()) : text.splice(text.length, 0, elem.innerText.toLowerCase());
+                    screen.updateScreen(text);
+                }
+            }
             break;
         default:
             monitor.focus();
@@ -220,6 +279,9 @@ const clickHandler = () => {
 
             let char = getChar(data, keyCode);
             let isDigit = (keyCode >= 48 && keyCode <= 57 ) ? true : false;
+            let isEng = (localStorage.getItem('language') == 'en') ? true : false;
+
+
             switch (Number(keyCode)) {
                 case 8:
                     if (getCharPosition() != 0 ){
@@ -267,8 +329,66 @@ const clickHandler = () => {
                 case 40:
                 case 91:
                     break;
+                case 187:
+                case 189:
+                case 191:
+                case 220:
+                    monitor.focus();
+                    if (getCharPosition() != 0 ){
+                        if(isEng){
+                            monitor.focus();
+                            (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
+                            screen.updateScreen(text);
+                        }else {
+                            monitor.focus();
+                            text.splice(getCharPosition(), 0, elem.innerText);
+                            screen.updateScreen(text);
+                        }
+                    }else {
+                        if(isEng){
+                            monitor.focus();
+                            (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
+                            screen.updateScreen(text);
+                        }else {
+                            monitor.focus();
+                            (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()[0]) : text.splice(text.length, 0, elem.innerText.toLowerCase()[2]);
+                            screen.updateScreen(text);
+                        }
+                    }
+
+                    break;
+                case 186:
+                case 188:
+                case 190:
+                case 192:
+                case 219:
+                case 221:
+                case 222:
+                    monitor.focus();
+                    if (getCharPosition() != 0 ){
+                        if(isEng){
+                            monitor.focus();
+                            (e.shiftKey) ? text.splice(getCharPosition(), 0, char.spanTag) : text.splice(getCharPosition(), 0, char.value);
+                            screen.updateScreen(text);
+                        }else {
+                            monitor.focus();
+                            text.splice(getCharPosition(), 0, elem.innerText);
+                            screen.updateScreen(text);
+                        }
+                    }else {
+                        if(isEng){
+                            monitor.focus();
+                            (e.shiftKey) ? text.splice(text.length, 0, char.spanTag) : text.splice(text.length, 0, char.value);
+                            screen.updateScreen(text);
+                        }else {
+                            monitor.focus();
+                            (!(e.shiftKey && getCapsLock()) && (e.shiftKey || getCapsLock())) ? text.splice(text.length, 0, elem.innerText.toUpperCase()) : text.splice(text.length, 0, elem.innerText.toLowerCase());
+                            screen.updateScreen(text);
+                        }
+                    }
+                    break;
+
                 default:
-debugger
                     monitor.focus();
                     if (getCharPosition() != 0 ){
                         if(isDigit){
