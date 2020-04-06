@@ -97,8 +97,6 @@
     height: 20px;
 }
 
-
-
 /* Ripple effect */
 .col {
     background-position: center;
@@ -112,7 +110,6 @@
     background-size: 100%;
     transition: background 0s;
 }
-
 
 .activate{
     background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
@@ -129,8 +126,6 @@
     background-size: 100%;
     transition: background 0s;
 }
-
-
 
 /* All CSS is on two classes */
 .monitor {
@@ -151,7 +146,6 @@
     padding-bottom: 3%;
 }
 
-/* Include the monitor stand @ http://i355.photobucket.com/albums/r451/haeckdesign/monitorstand.png, hide it on small screens, & style the list items as needed. */
 
 div.monitor textarea {
     background: #212121 none repeat scroll 0 0;

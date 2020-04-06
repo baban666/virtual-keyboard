@@ -1,13 +1,13 @@
 export class Button {
+
     constructor({  keyCod, spanTag, spanTagRu, className, value, valueRu, ...rest }) {
         this.keyCod = keyCod;
         this.spanTag = spanTag;
         this.className = className;
         this.value = value;
         this.valueRu = valueRu;
-        this.spanTagRu = spanTagRu
+        this.spanTagRu = spanTagRu;
     }
-
 
     // Button generator
     generateButton(isEnglishLang = 'en') {
